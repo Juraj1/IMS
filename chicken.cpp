@@ -6,6 +6,7 @@
 
 #include "chicken.h"
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
