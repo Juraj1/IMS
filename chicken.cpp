@@ -13,14 +13,17 @@ using namespace std;
  * @brief Constructor initialises values of chicken
  */
 chicken::chicken() {
-    this->dayOfLife         = 0;
-    this->weight            = this->STARTING_WEIGHT;
+    /* private variables */
+    this->dayOfLife = 0;
+    this->weight    = this->STARTING_WEIGHT;
+
     this->currentWaterUsage = this->WATER_DAY_7;
 
-    this->BR1usedFood = 0;
-    this->BR2usedFood = 0;
-    this->BR3usedFood = 0;
-
+    /* public variables */
+    this->usedWater     = 0;
+    this->BR1usedFood   = 0;
+    this->BR2usedFood   = 0;
+    this->BR3usedFood   = 0;
     this->totalFoodUsed = 0;
 
 #ifdef DEBUG

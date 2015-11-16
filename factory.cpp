@@ -16,14 +16,21 @@ factory::factory(){
     this->BR2FoodAmount = this->INITIAL_FOOD_AMOUNT;
     this->BR3FoodAmount = this->INITIAL_FOOD_AMOUNT;
 
+    this->dayOfWork         = 0;
+
+    this->harvestedChicken = 0;
+    this->destroyedChicken = 0;
+
     this->BR1foodAmountUsed = 0;
     this->BR2foodAmountUsed = 0;
     this->BR3foodAmountUsed = 0;
 
-    this->totalWaterUsed    = 0;
     this->totalFoodUsed     = 0;
 
-    this->dayOfWork         = 0;
+    this->totalWaterUsed    = 0;
+
+
+
 #ifdef DEBUG
     cout << "Factory: Object initialised" << endl;
     cout << "Factory: Food delivery of BR1 " << this->BR1FoodAmount << " kg" << endl;

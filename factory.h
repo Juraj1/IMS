@@ -17,9 +17,9 @@ class factory;
 
 class factory {
 private:
-    double BR1FoodAmount;    /* grams */
-    double BR2FoodAmount;    /* grams */
-    double BR3FoodAmount;    /* grams */
+    double BR1FoodAmount;    /* kilos */
+    double BR2FoodAmount;    /* kilos */
+    double BR3FoodAmount;    /* kilos */
 
 
     /*
