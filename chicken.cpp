@@ -6,6 +6,7 @@
 
 #include "chicken.h"
 #include <iostream>
+using namespace std;
 
 /**
  * @brief Constructor initialises values of chicken
@@ -14,6 +15,9 @@ chicken::chicken() {
     this->dayOfLife         = 0;
     this->weight            = this->starting_weight;
     this->currentWaterUsage = this->WATER_DAY_7;
+#ifdef DEBUG
+    cout << "Chicken object initialised" << endl;
+#endif
 }
 
 /**
@@ -65,7 +69,7 @@ void chicken::die(bool man, factory *factory1) {
  * @brief feeds chicken
  */
 void chicken::feed(factory *factory1) {
-    factory1->substractFood(CHICKEN_COUNT*this->AVG_DAILY_FOOD_INCOME);
+    factory1->substractFood(this->AVG_DAILY_FOOD_INCOME);
 }
 
 /**
@@ -74,7 +78,7 @@ void chicken::feed(factory *factory1) {
 void chicken::nextDay(factory *factory1) {
     this->dayOfLife++;
 #ifdef DEBUG
-    std::cout << this->dayOfLife << std::endl;
+    cout << "Chicken moved to next day" << endl;
 #endif
 
     this->feed(factory1);

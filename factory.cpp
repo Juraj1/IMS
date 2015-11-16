@@ -14,6 +14,11 @@ factory::factory(){
     /* conversion from tonnes to kilos to tonnes */
     this->foodAmountGrams   = 1000*1000*this->INITIAL_FOOD_AMOUNT_TONNES;
     this->dayOfLife         = 0;
+    cout.precision(20);
+#ifdef DEBUG
+    cout << "Factory: Object initialised" << endl;
+#endif
+
 }
 
 
@@ -23,6 +28,11 @@ factory::factory(){
  */
 void factory::substractFood(float amount) {
     this->foodAmountGrams   -= amount;
+#ifdef DEBUG
+    cout << "Factory: " << amount << " grams of food substracted." << endl;
+    cout << "Factory: " << this->foodAmountGrams/1000000 << " tonnes of food left" << endl;
+#endif
+
 }
 
 /**
@@ -32,6 +42,9 @@ void factory::substractFood(float amount) {
 void factory::addFood(int amount) {
     /* conversion from kilos to grams */
     this->foodAmountGrams   += 1000*amount;
+#ifdef DEBUG
+    cout << "Factory: Food added." << endl;
+#endif
 }
 
 /**
@@ -40,15 +53,17 @@ void factory::addFood(int amount) {
  */
 void factory::nextDay(vector<chicken> *chickVector) {
     this->dayOfLife++;
+#ifdef DEBUG
+    cout    << "####################### Factory day: " << this->dayOfLife << " ########################"<< endl
+            << endl;
+#endif
     for(vector<chicken>::iterator it = chickVector->begin(); it != chickVector->end(); it++){
         it->nextDay(this);
 #ifdef DEBUG
-        cout << "Day of Life: " << it->getDay() << endl;
+        cout << "Chick's day of life: " << it->getDay() << endl << endl;
 #endif
     }
-#ifdef DEBUG
-    cout << "Factory day: " << this->dayOfLife << endl;
-#endif
+
 
 
 }

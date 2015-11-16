@@ -13,7 +13,6 @@ class factory;
 #include <vector>
 
 #include "chicken.h"
-#include "debug.h"
 
 
 class factory {

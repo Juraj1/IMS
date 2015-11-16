@@ -10,7 +10,7 @@ int main() {
     vector<chicken> chick;
 
     /* create chicks */
-    for(int i = 0; i < 2; i++){
+    for(int i = 0; i < 20000; i++){
         chick.push_back(chicken());
     }
 
