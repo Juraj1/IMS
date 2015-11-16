@@ -6,6 +6,7 @@
 
 #include "chicken.h"
 #include <iostream>
+
 using namespace std;
 
 /**
@@ -13,8 +14,15 @@ using namespace std;
  */
 chicken::chicken() {
     this->dayOfLife         = 0;
-    this->weight            = this->starting_weight;
+    this->weight            = this->STARTING_WEIGHT;
     this->currentWaterUsage = this->WATER_DAY_7;
+
+    this->BR1usedFood = 0;
+    this->BR2usedFood = 0;
+    this->BR3usedFood = 0;
+
+    this->totalFoodUsed = 0;
+
 #ifdef DEBUG
     cout << "Chicken object initialised" << endl;
 #endif
@@ -60,11 +68,11 @@ void chicken::addWeight() {
 void chicken::die(bool man, factory *factory1) {
     /* chick can be eaten */
     if(man){
-        factory1->harvestChick(nullptr);
+        factory1->harvestChick(this);
     }
     /* chick must be destroyed */
     else{
-        factory1->destroyChick(nullptr);
+        factory1->destroyChick(this);
     }
 }
 
@@ -72,11 +80,16 @@ void chicken::die(bool man, factory *factory1) {
  * @brief feeds chicken
  */
 void chicken::feed(factory *factory1) {
-    factory1->substractFood(this->AVG_DAILY_FOOD_INCOME);
+    if(this->dayOfLife < BR1_END){
+        factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR1_starter);
+    }
+    else if(this->dayOfLife < BR2_END){
+        factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR2_grower);
+    }
+    else if(this->dayOfLife <= this->DAY_42){
+        factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR3_finisher);
+    }
     this->addWeight();
-#ifdef DEBUG
-    cout << "Chicken fed" << endl;
-#endif
 }
 
 /**
@@ -127,13 +140,58 @@ void chicken::nextDay(factory *factory1) {
         cout << "Water usage day 35 - 42" << endl;
 #endif
     }
-    /* chick is ready for death */
-    else if(this->DAY_42 <= this->dayOfLife){
+
+
+
+
+    this->usedWater += this->currentWaterUsage;
+
+
+
+    if(this->dayOfLife <= this->BR1_END){
+        this->BR1usedFood   += this->AVG_DAILY_FOOD_INCOME;
+        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
 #ifdef DEBUG
-        cout << "Chicken ready for death" << endl;
+        cout << "Feeding BR1" << endl;
+        cout << "Total food used: " << this->BR1usedFood + this->BR2usedFood + this->BR3usedFood << " kilos" << endl;
 #endif
-        this->die(true, factory1);
     }
+    else if(this->dayOfLife <= this->BR2_END){
+        this->BR2usedFood   += this->AVG_DAILY_FOOD_INCOME;
+        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
+
+#ifdef DEBUG
+        cout << "Feeding BR2" << endl;
+        cout << "Total food used: " << this->BR1usedFood + this->BR2usedFood + this->BR3usedFood << " kilos" << endl;
+#endif
+    }
+    else if(this->dayOfLife <= this->DAY_42){
+        this->BR3usedFood   += this->AVG_DAILY_FOOD_INCOME;
+        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
+#ifdef DEBUG
+        cout << "Feeding BR3" << endl;
+        cout << "Total food used: " << this->BR1usedFood + this->BR2usedFood + this->BR3usedFood << " kilos" << endl;
+#endif
+    }
+
+    /*
+     * death here
+     */
+
+    if(this->dayOfLife >= this->DAY_42){
+        /* change probability of death */
+        bool TrueFalse = (rand() % 100) <= this->deathProbability;
+        if(TrueFalse){
+#ifdef DEBUG
+            cout << "Chicken infected" << endl;
+#endif
+            this->die(false, factory1);
+        }
+        else{
+            this->die(true, factory1);
+        }
+    }
+
 }
 
 /*

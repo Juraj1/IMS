@@ -16,7 +16,7 @@ main.o:main.cpp
 
 
 clean:
-	rm -rf *.o
+	rm -rf *.o drubezarna
 
 debug_add_flag:CFLAGS += -DDEBUG
 debug_add_flag:drubezarna

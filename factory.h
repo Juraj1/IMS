@@ -17,20 +17,37 @@ class factory;
 
 class factory {
 private:
-    double foodAmountGrams; /* grams */
+    double BR1FoodAmount;    /* grams */
+    double BR2FoodAmount;    /* grams */
+    double BR3FoodAmount;    /* grams */
+
 
     /*
      * constants
      */
-    const int INITIAL_FOOD_AMOUNT_TONNES    = 100000; /* tonnes of food */
-    const int CHICK_CAPACITY                = 10000;
+    const int INITIAL_FOOD_AMOUNT = 100000; /* kilos of food */
 
 public:
+    /*
+     * constants
+     */
+    const int CHICK_CAPACITY                = 30000;
+
     /*
      * variables
      */
     
-    int dayOfWork;
+    int     dayOfWork;
+    int     harvestedChicken;   /* total count of harvested chicken */
+    int     destroyedChicken;   /* total count of destroyed chicken */
+
+    double  BR1foodAmountUsed;  /* food amount used in KGs */
+    double  BR2foodAmountUsed;  /* food amount used in KGs */
+    double  BR3foodAmountUsed;  /* food amount used in KGs */
+
+    double  totalFoodUsed;
+
+    double totalWaterUsed;          /* total water used */
 
     /*
      * methods
@@ -38,9 +55,11 @@ public:
     factory();
     void harvestChick(chicken*);
     void destroyChick(chicken*);
-    void addFood(int);
-    void substractFood(float);
+    void addFood(int, int);
+    void substractFood(float, int);
     void nextDay(std::vector<chicken> *);
+    void statistics();
+
 
 };
 
