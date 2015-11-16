@@ -3,6 +3,7 @@ CC=g++
 OBJFILES=	chicken.o\
 		factory.o\
 		main.o
+DEBUG=-DDEBUG
 
 drubezarna:$(OBJFILES)
 	$(CC) $(OBJFILES) -o drubezarna
@@ -13,5 +14,11 @@ chicken.o:chicken.cpp
 main.o:main.cpp
 	$(CC) $(CFLAGS) main.cpp
 
+
 clean:
 	rm -rf *.o
+
+debug_add_flag: CFLAGS += -DDEBUG
+debug_add_flag:drubezarna
+
+debug: debug_add_flag
