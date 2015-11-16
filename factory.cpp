@@ -133,7 +133,7 @@ void factory::harvestChick(chicken *chick) {
 /**
  * @brief man destroys chicks after it's death from disease
  */
-void factory::destroyChick(chicken *chick) {
+void factory::destroyChick() {
     /* chicken is useless, just delete him */
 #ifdef DEBUG
     cout << "Destroying chicken" << endl;

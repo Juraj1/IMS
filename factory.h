@@ -54,7 +54,7 @@ public:
      */
     factory();
     void harvestChick(chicken*);
-    void destroyChick(chicken*);
+    void destroyChick();
     void addFood(int, int);
     void substractFood(float, int);
     void nextDay(std::vector<chicken> *);

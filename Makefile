@@ -1,4 +1,4 @@
-CFLAGS= -std=c++11 -g -Wall -pedantic -Werror -c
+CFLAGS= -std=c++11 -g -Wall -pedantic -Werror -c -Wextra
 CC=g++
 OBJFILES=	chicken.o\
 		factory.o\

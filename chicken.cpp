@@ -75,7 +75,7 @@ void chicken::die(bool man, factory *factory1) {
     }
     /* chick must be destroyed */
     else{
-        factory1->destroyChick(this);
+        factory1->destroyChick();
     }
 }
 
