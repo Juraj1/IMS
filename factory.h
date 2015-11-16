@@ -29,7 +29,8 @@ public:
     /*
      * variables
      */
-    int dayOfLife;
+    
+    int dayOfWork;
 
     /*
      * methods

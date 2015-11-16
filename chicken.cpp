@@ -48,6 +48,9 @@ void chicken::addWeight() {
     else if(this->DAY_42 > this->dayOfLife){
         this->weight += this->WEIGHT_GAIN_DAY_42;
     }
+#ifdef DEBUG
+    cout << "Chicken's weight is: " << this->weight << " grams" << endl;
+#endif
 }
 
 /**
@@ -70,6 +73,10 @@ void chicken::die(bool man, factory *factory1) {
  */
 void chicken::feed(factory *factory1) {
     factory1->substractFood(this->AVG_DAILY_FOOD_INCOME);
+    this->addWeight();
+#ifdef DEBUG
+    cout << "Chicken fed" << endl;
+#endif
 }
 
 /**
@@ -85,34 +92,48 @@ void chicken::nextDay(factory *factory1) {
 
     /* water usage modification */
     if(this->DAY_7 > this->dayOfLife){
+#ifdef DEBUG
+        cout << "Water usage day 0 - 7" << endl;
+#endif
         this->currentWaterUsage = this->WATER_DAY_7;
     }
     else if(this->DAY_14 > this->dayOfLife){
         this->currentWaterUsage = this->WATER_DAY_14;
+#ifdef DEBUG
+        cout << "Water usage day 7 - 14" << endl;
+#endif
     }
     else if(this->DAY_21 > this->dayOfLife){
         this->currentWaterUsage = this->WATER_DAY_21;
+#ifdef DEBUG
+        cout << "Water usage day 14 - 21" << endl;
+#endif
     }
     else if(this->DAY_28 > this->dayOfLife){
         this->currentWaterUsage = this->WATER_DAY_28;
+#ifdef DEBUG
+        cout << "Water usage day 21 - 28" << endl;
+#endif
     }
     else if(this->DAY_35 > this->dayOfLife){
         this->currentWaterUsage = this->WATER_DAY_35;
+#ifdef DEBUG
+        cout << "Water usage day 28 - 35" << endl;
+#endif
     }
     else if(this->DAY_42 > this->dayOfLife){
         this->currentWaterUsage = this->WATER_DAY_42;
+#ifdef DEBUG
+        cout << "Water usage day 35 - 42" << endl;
+#endif
     }
     /* chick is ready for death */
     else if(this->DAY_42 <= this->dayOfLife){
-        this->readyForDeath = true;
+#ifdef DEBUG
+        cout << "Chicken ready for death" << endl;
+#endif
+        this->die(true, factory1);
     }
-}
-
-/**
- * @brief returns status of chicks death flag
- */
-bool chicken::checkDeathMark() {
-    return this->readyForDeath;
 }
 
 /*

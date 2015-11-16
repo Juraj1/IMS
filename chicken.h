@@ -22,7 +22,6 @@ private:
     int dayOfLife;
     int weight;             /* in grams */
     int currentWaterUsage;  /* in liters per 1000 chicks */
-    bool readyForDeath;     /* ready for death flag */
 
     /*
      * constants
@@ -60,11 +59,11 @@ private:
      * weight border constants
      */
     const int DAY_7     = 7;    /* day 7 */
-    const int DAY_14    = 112;  /* day 14 */
-    const int DAY_21    = 171;  /* day 21 */
-    const int DAY_28    = 237;  /* day 28 */
-    const int DAY_35    = 278;  /* day 35 */
-    const int DAY_42    = 336;  /* day 42 */
+    const int DAY_14    = 15;  /* day 14 */
+    const int DAY_21    = 21;  /* day 21 */
+    const int DAY_28    = 28;  /* day 28 */
+    const int DAY_35    = 35;  /* day 35 */
+    const int DAY_42    = 42;  /* day 42 */
 
     /*
      * water usage constant
@@ -106,13 +105,12 @@ public:
      * method declarations
      */
     chicken();
-    void    chickenInit();         /* chicken is delivered at age 0 for feeding */
-    void    die(bool, factory*);   /* if false is set, it dies from disease, if true, it was killed by a man */
-    void    feed(factory*);        /* feed everyday by specified time */
-    void    addWeight();           /* adds weight based on dayOfLife */
-    void    nextDay(factory*);     /* swaps discrete time to next day */
-    bool    checkDeathMark();      /* returns status of chick's death mark */
-    int     getDay();
+    void    chickenInit();          /* chicken is delivered at age 0 for feeding */
+    void    die(bool, factory*);    /* if false is set, it dies from disease, if true, it was killed by a man */
+    void    feed(factory*);         /* feed everyday by specified time */
+    void    addWeight();            /* adds weight based on dayOfLife */
+    void    nextDay(factory*);      /* swaps discrete time to next day */
+    int     getDay();               /* returns age of chicken in days */
 
 };
 

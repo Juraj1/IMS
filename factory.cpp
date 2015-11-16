@@ -13,7 +13,7 @@ using namespace std;
 factory::factory(){
     /* conversion from tonnes to kilos to tonnes */
     this->foodAmountGrams   = 1000*1000*this->INITIAL_FOOD_AMOUNT_TONNES;
-    this->dayOfLife         = 0;
+    this->dayOfWork         = 0;
     cout.precision(20);
 #ifdef DEBUG
     cout << "Factory: Object initialised" << endl;
@@ -52,9 +52,9 @@ void factory::addFood(int amount) {
  * @param chickVector vector of chicks that we want to transform to the next day
  */
 void factory::nextDay(vector<chicken> *chickVector) {
-    this->dayOfLife++;
+    this->dayOfWork++;
 #ifdef DEBUG
-    cout    << "####################### Factory day: " << this->dayOfLife << " ########################"<< endl
+    cout    << "####################### Factory day: " << this->dayOfWork << " ########################"<< endl
             << endl;
 #endif
     for(vector<chicken>::iterator it = chickVector->begin(); it != chickVector->end(); it++){
@@ -72,7 +72,9 @@ void factory::nextDay(vector<chicken> *chickVector) {
  * @brief man harvests chicks after certain day count
  */
 void factory::harvestChick(chicken *chick) {
-
+#ifdef DEBUG
+    cout << "Harvesting chicken" << endl;
+#endif
 }
 
 
@@ -81,5 +83,8 @@ void factory::harvestChick(chicken *chick) {
  */
 void factory::destroyChick(chicken *chick) {
     /* chicken is useless, just delete him */
+#ifdef DEBUG
+    cout << "Destroying chicken" << endl;
+#endif
     delete chick;
 }

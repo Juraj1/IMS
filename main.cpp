@@ -10,12 +10,13 @@ int main() {
     vector<chicken> chick;
 
     /* create chicks */
-    for(int i = 0; i < 20000; i++){
+    for(int i = 0; i < 100; i++){
         chick.push_back(chicken());
     }
 
-    factory1->nextDay(&chick);
-    factory1->nextDay(&chick);
+    for(int i = 0; i < 42; i++){
+        factory1->nextDay(&chick);
+    }
 
     return 0;
 }
