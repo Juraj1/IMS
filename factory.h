@@ -4,12 +4,17 @@
  * brief: header file for factory class
  */
 
+class factory;
+
 #ifndef DRUBEZARNA_FACTORY_H
 #define DRUBEZARNA_FACTORY_H
 
 #include <iostream>
 #include <vector>
+
 #include "chicken.h"
+#include "debug.h"
+
 
 class factory {
 private:
@@ -22,12 +27,20 @@ private:
     const int CHICK_CAPACITY                = 10000;
 
 public:
-    void factoryInit();
-    void harvestChick();
-    void destroyChick();
+    /*
+     * variables
+     */
+    int dayOfLife;
+
+    /*
+     * methods
+     */
+    factory();
+    void harvestChick(chicken*);
+    void destroyChick(chicken*);
     void addFood(int);
     void substractFood(float);
-    void nextDay(std::vector<chicken>);
+    void nextDay(std::vector<chicken> *);
 
 };
 

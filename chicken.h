@@ -4,10 +4,14 @@
  * brief: header file for chicken class
  */
 
+
+class chicken;
+
 #ifndef DRUBEZARNA_CHICKEN_H
 #define DRUBEZARNA_CHICKEN_H
 
 #include "factory.h"
+
 
 
 class chicken {
@@ -32,7 +36,7 @@ private:
     /*
      * average daily food requirement
      */
-    const float AVG_DAILY_FOOD_INCOME   = 95.24
+    const float AVG_DAILY_FOOD_INCOME   = 95.24;
 
     const int BR1_END   = 10; /* border between BR1 and BR2 swap */
     const int BR2_END   = 25; /* border between BR2 and BR3 swap */
@@ -101,12 +105,14 @@ public:
     /*
      * method declarations
      */
-    void chickenInit();         /* chicken is delivered at age 0 for feeding */
-    void die(bool, factory*);   /* if false is set, it dies from disease, if true, it was killed by a man */
-    void feed(factory*);        /* feed everyday by specified time */
-    void addWeight();           /* adds weight based on dayOfLife */
-    void nextDay(factory *factory1);             /* swaps discrete time to next day */
-    bool checkDeathMark();      /* returns status of chick's death mark */
+    chicken();
+    void    chickenInit();         /* chicken is delivered at age 0 for feeding */
+    void    die(bool, factory*);   /* if false is set, it dies from disease, if true, it was killed by a man */
+    void    feed(factory*);        /* feed everyday by specified time */
+    void    addWeight();           /* adds weight based on dayOfLife */
+    void    nextDay(factory*);     /* swaps discrete time to next day */
+    bool    checkDeathMark();      /* returns status of chick's death mark */
+    int     getDay();
 
 };
 

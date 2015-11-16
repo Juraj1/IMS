@@ -5,6 +5,17 @@
 using namespace std;
 
 int main() {
-    cout << "Hello, World!" << endl;
+    factory *factory1 = new factory();
+
+    vector<chicken> chick;
+
+    /* create chicks */
+    for(int i = 0; i < 2; i++){
+        chick.push_back(chicken());
+    }
+
+    factory1->nextDay(&chick);
+    factory1->nextDay(&chick);
+
     return 0;
 }

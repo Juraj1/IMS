@@ -6,10 +6,11 @@
 
 #include "chicken.h"
 #include <iostream>
+
 /**
- * @brief Function initialises values of chicken
+ * @brief Constructor initialises values of chicken
  */
-void chicken::chickenInit() {
+chicken::chicken() {
     this->dayOfLife         = 0;
     this->weight            = this->starting_weight;
     this->currentWaterUsage = this->WATER_DAY_7;
@@ -52,11 +53,11 @@ void chicken::addWeight() {
 void chicken::die(bool man, factory *factory1) {
     /* chick can be eaten */
     if(man){
-        factory1->harvestChick();
+        factory1->harvestChick(nullptr);
     }
     /* chick must be destroyed */
     else{
-        factory1->destroyChick();
+        factory1->destroyChick(nullptr);
     }
 }
 
@@ -71,7 +72,11 @@ void chicken::feed(factory *factory1) {
  * @brief adds a day to the age if chicken
  */
 void chicken::nextDay(factory *factory1) {
-    this->dayOfLife += 1;
+    this->dayOfLife++;
+#ifdef DEBUG
+    std::cout << this->dayOfLife << std::endl;
+#endif
+
     this->feed(factory1);
 
     /* water usage modification */
@@ -104,4 +109,11 @@ void chicken::nextDay(factory *factory1) {
  */
 bool chicken::checkDeathMark() {
     return this->readyForDeath;
+}
+
+/*
+ * @brief returns chick's dayOfLife
+ */
+int chicken::getDay(){
+    return this->dayOfLife;
 }
