@@ -35,6 +35,7 @@ factory::factory(){
     this->BR2foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT);
     this->BR3foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT);
 
+    srand(time(0));
 
 #ifdef DEBUG
     cout << "Factory: Object initialised" << endl;
