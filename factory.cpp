@@ -16,6 +16,8 @@ factory::factory(){
     this->BR2FoodAmount = this->INITIAL_FOOD_AMOUNT;
     this->BR3FoodAmount = this->INITIAL_FOOD_AMOUNT;
 
+    this->iterationCount = 0;
+
     this->dayOfWork         = 0;
 
     this->harvestedChicken = 0;
@@ -29,6 +31,9 @@ factory::factory(){
 
     this->totalWaterUsed    = 0;
 
+    this->BR1foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT);
+    this->BR2foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT);
+    this->BR3foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT);
 
 
 #ifdef DEBUG
@@ -49,12 +54,22 @@ void factory::substractFood(float amount, int type) {
     switch(type){
         case 1: /* BR1 */
             this->BR1FoodAmount -= amount;
+            /* when factory runs out of food, it orders 100000 kg */
+            if(1 > this->BR1FoodAmount){
+                this->addFood(this->INITIAL_FOOD_AMOUNT, 1); /* BR1 */
+            }
             break;
         case 2: /* BR2 */
             this->BR2FoodAmount -= amount;
+            if(1 > this->BR2FoodAmount){
+                this->addFood(this->INITIAL_FOOD_AMOUNT, 2); /* BR2*/
+            }
             break;
         case 3: /* BR3 */
             this->BR3FoodAmount -= amount;
+            if(1 > this->BR3FoodAmount){
+                this->addFood(this->INITIAL_FOOD_AMOUNT, 3); /* BR3 */
+            }
             break;
         default:
             return;
@@ -73,16 +88,18 @@ void factory::substractFood(float amount, int type) {
  * @param amount adds number of kilograms specified
  */
 void factory::addFood(int amount, int type) {
-    /* conversion from kilos to grams */
     switch(type){
         case 1: /* BR1 */
-            this->BR1FoodAmount += 1000*amount;
+            this->BR1FoodAmount += amount;
+            this->BR1foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT); /* add record about delivery */
             break;
         case 2: /* BR2 */
-            this->BR1FoodAmount += 1000*amount;
+            this->BR2FoodAmount += amount;
+            this->BR2foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT); /* add record about delivery */
             break;
         case 3: /* BR3 */
-            this->BR1FoodAmount += 1000*amount;
+            this->BR3FoodAmount += amount;
+            this->BR3foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT); /* add record about delivery */
             break;
         default:
             return;
@@ -145,16 +162,33 @@ void factory::destroyChick() {
  * @brief print statistics
  */
 void factory::statistics() {
-    cout    << "########## TOTAL STATISTICS ##########"                                     << endl;
-    cout    << "Chicken delivered:    " << this->harvestedChicken + this->destroyedChicken  << endl;
-    cout    << "Chicken infected:     " << this->destroyedChicken                           << endl;
-    cout    << "Chicken harvested     " << this->harvestedChicken                           << endl;
-    cout    << "BR1 food delivered:   " << this->INITIAL_FOOD_AMOUNT << " kilograms"        << endl;
-    cout    << "BR1 food used:        " << this->BR1foodAmountUsed << " kilograms"          << endl;
-    cout    << "BR2 food delivered:   " << this->INITIAL_FOOD_AMOUNT<< " kilograms"         << endl;
-    cout    << "BR2 food used:        " << this->BR2foodAmountUsed << " kilograms"          << endl;
-    cout    << "BR3 food delivered:   " << this->INITIAL_FOOD_AMOUNT<< " kilograms"         << endl;
-    cout    << "BR3 food used:        " << this->BR3foodAmountUsed << " kilograms"          << endl;
-    cout    << "Total food used:      " << this->totalFoodUsed << " kilograms"              << endl;
-    cout    << "Total water used      " << this->totalWaterUsed << " liters"                << endl;
+    /* count total food */
+    int BR1TotalDelivery = 0;
+    int BR2TotalDelivery = 0;
+    int BR3TotalDelivery = 0;
+
+    for(std::vector<int>::iterator it = this->BR1foodDelivery.begin(); it != this->BR1foodDelivery.end(); it++){
+        BR1TotalDelivery    += *it;
+    }
+
+    for(std::vector<int>::iterator it = this->BR2foodDelivery.begin(); it != this->BR2foodDelivery.end(); it++){
+        BR2TotalDelivery    += *it;
+    }
+
+    for(std::vector<int>::iterator it = this->BR3foodDelivery.begin(); it != this->BR3foodDelivery.end(); it++){
+        BR3TotalDelivery    += *it;
+    }
+
+    cout    << "########## TOTAL STATISTICS NO." << this->iterationCount++ << " ##########"                 << endl;
+    cout    << "Chicken delivered:    " << this->harvestedChicken + this->destroyedChicken                  << endl;
+    cout    << "Chicken infected:     " << this->destroyedChicken                                           << endl;
+    cout    << "Chicken harvested     " << this->harvestedChicken                                           << endl;
+    cout    << "BR1 food delivered:   " << BR1TotalDelivery << " kilograms"                                 << endl;
+    cout    << "BR1 food used:        " << this->BR1foodAmountUsed << " kilograms"                          << endl;
+    cout    << "BR2 food delivered:   " << BR2TotalDelivery << " kilograms"                                 << endl;
+    cout    << "BR2 food used:        " << this->BR2foodAmountUsed << " kilograms"                          << endl;
+    cout    << "BR3 food delivered:   " << BR3TotalDelivery << " kilograms"                                 << endl;
+    cout    << "BR3 food used:        " << this->BR3foodAmountUsed << " kilograms"                          << endl;
+    cout    << "Total food used:      " << this->totalFoodUsed << " kilograms"                              << endl;
+    cout    << "Total water used      " << this->totalWaterUsed << " liters"                                << endl;
 }

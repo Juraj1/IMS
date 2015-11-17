@@ -21,6 +21,7 @@ private:
     double BR2FoodAmount;    /* kilos */
     double BR3FoodAmount;    /* kilos */
 
+    int iterationCount;
 
     /*
      * constants
@@ -29,14 +30,9 @@ private:
 
 public:
     /*
-     * constants
-     */
-    const int CHICK_CAPACITY                = 30000;
-
-    /*
      * variables
      */
-    
+
     int     dayOfWork;
     int     harvestedChicken;   /* total count of harvested chicken */
     int     destroyedChicken;   /* total count of destroyed chicken */
@@ -48,6 +44,11 @@ public:
     double  totalFoodUsed;
 
     double totalWaterUsed;          /* total water used */
+
+    std::vector<int> BR1foodDelivery;
+    std::vector<int> BR2foodDelivery;
+    std::vector<int> BR3foodDelivery;
+
 
     /*
      * methods
