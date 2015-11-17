@@ -16,7 +16,7 @@ factory::factory(){
     this->BR2FoodAmount = this->INITIAL_FOOD_AMOUNT;
     this->BR3FoodAmount = this->INITIAL_FOOD_AMOUNT;
 
-    this->iterationCount = 0;
+    this->iterationCount = 1;
 
     this->dayOfWork         = 0;
 
