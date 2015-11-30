@@ -1,0 +1,50 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+\title{Dokumentace projektu do předmětu \\* Modelování a simulace\\* zadání 8: drůbežárna}
+\author{Jiří Zahradník a Veronika Lysáková}
+\date{}
+
+\pdfinfo{%
+  /Title    ()
+  /Author   ()
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+\maketitle
+\includegraphics[scale=0.5]{fitnewb.png}
+\pagebreak
+
+\renewcommand{\contentsname}{Obsah}
+\tableofcontents
+\pagebreak
+
+\section{Úvod}
+V tomto textu bude čtenář seznámen s vytvářením modelu pro simulaci 
+života broilerů a ekonomické udržitelnosti drůbežárny.
+\par 
+Je zde popsáno studium autorů, kde autoři získávají potřebné informace
+pro vytvoření simulačního modelu na základě reálného modelu Drůbežárny.
+\par
+Na základě experimentů bude demonstrován růst broilerů, jejich úmrtnost
+a ekonomická udržitelnost drůbežárny za současných ekonomických podmínek.
+A také jak se pohyb ceny kuřat projeví v nákladech podniku. 
+
+
+\end{document}
