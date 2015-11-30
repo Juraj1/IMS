@@ -35,6 +35,10 @@
 \tableofcontents
 \pagebreak
 
+%
+% úvod dokumentace
+%
+
 \section{Úvod}
 V tomto textu bude čtenář seznámen s vytvářením modelu pro simulaci 
 života broilerů a ekonomické udržitelnosti drůbežárny.
@@ -45,6 +49,51 @@ pro vytvoření simulačního modelu na základě reálného modelu Drůbežárn
 Na základě experimentů bude demonstrován růst broilerů, jejich úmrtnost
 a ekonomická udržitelnost drůbežárny za současných ekonomických podmínek.
 A také jak se pohyb ceny kuřat projeví v nákladech podniku. 
+\subsection{Zdroje informací pro modelování}
+Jako zdroj informací autoři využili oficiální materiály firmy Aviagen\cite{aviagen}
+Jedná se o firmu zajišťující dovoz jednodenních kuřat do drůbežáren ve 130 zemích světa.
+Autoři se zaměřili konkrétně na broilery značky Ross\textsuperscript{\textregistered},
+jejichž podmínky pro pěstování jsou popsány v dokumentu poskytnutém firmou Aviagen\cite{ross}
+\subsection{Validace a verifikace}
+TODO
+
+%
+% Téma a použité metody
+%
+
+\section{Téma a použité metody}
+TODO
+\subsection{Postupy}
+TODO
+\subsection{Původy metod}
+TODO
+
+\section{Koncepce}
+TODO
+
+\section{Architektura simulačního modelu}
+TODO
+
+\section{Podstata simulačních experimentů a jejich průběh}
+TODO
+
+\section{Shrnutí simulačních experimentů a závěr}
+TODO
+
+
+\renewcommand{\refname}{Zdroje}
+\bibliographystyle{unsrt}
+\bibliography{dokumentace}
+\addcontentsline{toc}{section}{\refname}
+
 
 
 \end{document}
+
+\begin{thebibliography}{99}
+
+\bibitem{aviagen}
+\bibitem{ross}
+
+\end{thebibliography}
+
