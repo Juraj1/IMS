@@ -40,11 +40,11 @@
 %
 
 \section{Úvod}
-V tomto textu bude čtenář seznámen s vytvářením modelu pro simulaci 
+V tomto textu bude čtenář seznámen s vytvářením modelu pro diskrétní simulaci 
 života broilerů a ekonomické udržitelnosti drůbežárny.
 \par 
 Je zde popsáno studium autorů, kde autoři získávají potřebné informace
-pro vytvoření simulačního modelu na základě reálného modelu Drůbežárny.
+pro vytvoření simulačního modelu na základě reálného modelu drůbežárny.
 \par
 Na základě experimentů bude demonstrován růst broilerů, jejich úmrtnost
 a ekonomická udržitelnost drůbežárny za současných ekonomických podmínek.
@@ -55,7 +55,7 @@ Jedná se o firmu zajišťující dovoz jednodenních kuřat do drůbežáren ve
 Autoři se zaměřili konkrétně na broilery značky Ross\textsuperscript{\textregistered},
 jejichž podmínky pro pěstování jsou popsány v dokumentu poskytnutém firmou Aviagen\cite{ross}
 na jejich oficiálních webových stránkách. Autoři následně využili tyto informace k
-vytvoření modelu, který simuluje farmu pro výkrm broilerů Ross\textsuperscript{\textregistered}. 
+vytvoření konceptuálního modelu, který simuluje farmu pro výkrm broilerů Ross\textsuperscript{\textregistered}. 
 \subsection{Validace a verifikace}
 TODO
 
