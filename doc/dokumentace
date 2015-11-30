@@ -50,10 +50,12 @@ Na základě experimentů bude demonstrován růst broilerů, jejich úmrtnost
 a ekonomická udržitelnost drůbežárny za současných ekonomických podmínek.
 A také jak se pohyb ceny kuřat projeví v nákladech podniku. 
 \subsection{Zdroje informací pro modelování}
-Jako zdroj informací autoři využili oficiální materiály firmy Aviagen\cite{aviagen}
+Jako zdroj informací autoři využili oficiální materiály firmy Aviagen\cite{aviagen}.
 Jedná se o firmu zajišťující dovoz jednodenních kuřat do drůbežáren ve 130 zemích světa.
 Autoři se zaměřili konkrétně na broilery značky Ross\textsuperscript{\textregistered},
 jejichž podmínky pro pěstování jsou popsány v dokumentu poskytnutém firmou Aviagen\cite{ross}
+na jejich oficiálních webových stránkách. Autoři následně využili tyto informace k
+vytvoření modelu, který simuluje farmu pro výkrm broilerů Ross\textsuperscript{\textregistered}. 
 \subsection{Validace a verifikace}
 TODO
 
