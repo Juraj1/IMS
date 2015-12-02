@@ -27,12 +27,17 @@
 }
 
 \begin{document}
+
 \maketitle
 \includegraphics[scale=0.5]{fitnewb.png}
 \pagebreak
 
 \renewcommand{\contentsname}{Obsah}
 \tableofcontents
+
+
+
+
 \pagebreak
 
 %
@@ -96,7 +101,19 @@ a jejich maso je zpracováno.
 
 
 \subsection{Postupy}
-TODO
+TODO\newline
+Po nastudování a sepsání potřebných informací autoři vytvořili abstraktní model v podobě
+petriho sítě\cite{petriho_sit} pro život kuřete. Viz. obrázek \ref{obr:petri_kure}.\newline
+
+
+\begin{figure}[h]
+\includegraphics[scale=0.4]{kure.png}
+\caption{Petriho síť popisující život kuřete}
+\label{obr:petri_kure}
+\end{figure}
+
+
+
 \subsection{Původy metod}
 TODO
 
@@ -113,7 +130,9 @@ TODO
 TODO
 
 
-
+\renewcommand{\figurename}{Obrázek}
+\renewcommand{\listoffigures}{Obrázky}
+\listoffigures
 
 \renewcommand{\refname}{Zdroje}
 \bibliographystyle{unsrt}
@@ -131,6 +150,7 @@ TODO
 \bibitem{simulation_model}
 \bibitem{model}
 \bibitem{modelovani}
+\bibitem{petriho_sit}
 
 
 \end{thebibliography}
