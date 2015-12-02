@@ -35,7 +35,7 @@
 \renewcommand{\contentsname}{Obsah}
 \tableofcontents
 
-
+\renewcommand{\figurename}{Obrázek}
 
 
 \pagebreak
@@ -107,8 +107,8 @@ petriho sítě\cite{petriho_sit} pro život kuřete. Viz. obrázek \ref{obr:petr
 
 
 \begin{figure}[h]
-\includegraphics[scale=0.4]{kure.png}
 \caption{Petriho síť popisující život kuřete}
+\includegraphics[scale=0.4]{kure.png}
 \label{obr:petri_kure}
 \end{figure}
 
@@ -129,10 +129,10 @@ TODO
 \section{Shrnutí simulačních experimentů a závěr}
 TODO
 
-
-\renewcommand{\figurename}{Obrázek}
-\renewcommand{\listoffigures}{Obrázky}
+\renewcommand\listfigurename{Seznam obrázků}
 \listoffigures
+\addcontentsline{toc}{section}{\listfigurename}
+
 
 \renewcommand{\refname}{Zdroje}
 \bibliographystyle{unsrt}
