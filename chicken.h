@@ -22,7 +22,7 @@ private:
     int dayOfLife;
     int weight;                 /* in grams */
     double currentWaterUsage;   /* in liters per chick */
-
+    bool dead;
 
     /*
      * constants
@@ -80,11 +80,11 @@ private:
     /*
      * death probability of each chick
      */
-    const float deathProbability    = 2;  /* around 2% of total chicken will die */
+    const float deathProbability    = 5;  /* around 2% of total chicken will die */
 
     /*
      * 42 days to feed up a broiler,
-     * source: en.aviagen.com/assets/Tech_Center/BB_Foreign_Language_Docs/Czech_aTechDocs/CZECH-Broiler-for-CDsmall.pdf
+     * source: http://en.aviagen.com/assets/Tech_Center/Ross_Broiler/Ross-Broiler-Handbook-2014i-EN.pdf
      */
 
 
@@ -112,6 +112,7 @@ public:
     double totalFoodUsed;
 
 
+
     /*
      * method declarations
      */
@@ -121,6 +122,7 @@ public:
     void    addWeight();            /* adds weight based on dayOfLife */
     void    nextDay(factory*);      /* swaps discrete time to next day */
     int     getDay();               /* returns age of chicken in days */
+    bool    isDead();               /* checks whether chicken is dead or alive */
 
 };
 

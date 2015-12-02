@@ -121,6 +121,10 @@ void factory::nextDay(vector<chicken> *chickVector) {
             << endl;
 #endif
     for(vector<chicken>::iterator it = chickVector->begin(); it != chickVector->end(); it++){
+        /* if the chicken is dead, just skip it */
+        if(it->isDead()){
+            continue;
+        }
         it->nextDay(this);
 #ifdef DEBUG
         cout << "Chick's day of life: " << it->getDay() << endl << endl;

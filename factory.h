@@ -22,6 +22,7 @@ private:
     double BR3FoodAmount;    /* kilos */
 
     int iterationCount;
+    int deliveretChicken;
 
     /*
      * constants

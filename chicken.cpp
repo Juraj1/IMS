@@ -18,6 +18,7 @@ chicken::chicken() {
     /* private variables */
     this->dayOfLife = 0;
     this->weight    = this->STARTING_WEIGHT;
+    this->dead = false;
 
     this->currentWaterUsage = this->WATER_DAY_7;
 
@@ -71,6 +72,7 @@ void chicken::addWeight() {
  * @param man defines whether chicken dies by hand of man(True) or from disease(False)
  */
 void chicken::die(bool man, factory *factory1) {
+    this->dead = true;
     /* chick can be eaten */
     if(man){
         factory1->harvestChick(this);
@@ -183,18 +185,23 @@ void chicken::nextDay(factory *factory1) {
      * death here
      */
 
-    if(this->dayOfLife >= this->DAY_42){
-        /* change probability of death */
-        bool TrueFalse = (rand() % 100) <= this->deathProbability;
-        if(TrueFalse){
+
+    /* die from infection */
+    bool TrueFalse = (rand() % 10000) <= this->deathProbability;
+    if(TrueFalse){
 #ifdef DEBUG
-            cout << "Chicken infected" << endl;
+        cout << "Chicken infected" << endl;
 #endif
-            this->die(false, factory1);
-        }
-        else{
+        this->die(false, factory1);
+        return;
+    }
+
+
+    if(this->dayOfLife >= this->DAY_42){
+#ifdef DEBUG
+        cout << "Chicken killed by human" << endl;
+#endif
             this->die(true, factory1);
-        }
     }
 
 }
@@ -204,4 +211,11 @@ void chicken::nextDay(factory *factory1) {
  */
 int chicken::getDay(){
     return this->dayOfLife;
+}
+
+/*
+ * @brief returns whether chick is dead or alive
+ */
+bool chicken::isDead(){
+    return this->dead;
 }
