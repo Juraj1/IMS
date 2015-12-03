@@ -121,8 +121,10 @@ public:
     void    feed(factory*);         /* feed everyday by specified time */
     void    addWeight();            /* adds weight based on dayOfLife */
     void    nextDay(factory*);      /* swaps discrete time to next day */
+    void    drink();                /* adds water */
     int     getDay();               /* returns age of chicken in days */
     bool    isDead();               /* checks whether chicken is dead or alive */
+    int     getWeight();            /* returns weight of chicken */
 
 };
 

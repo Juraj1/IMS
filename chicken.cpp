@@ -88,28 +88,30 @@ void chicken::die(bool man, factory *factory1) {
  */
 void chicken::feed(factory *factory1) {
     if(this->dayOfLife < BR1_END){
+        this->BR1usedFood   += this->AVG_DAILY_FOOD_INCOME;
+        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
+
         factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR1_starter);
     }
     else if(this->dayOfLife < BR2_END){
+        this->BR2usedFood   += this->AVG_DAILY_FOOD_INCOME;
+        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
+
         factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR2_grower);
     }
     else if(this->dayOfLife <= this->DAY_42){
+        this->BR3usedFood   += this->AVG_DAILY_FOOD_INCOME;
+        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
+
         factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR3_finisher);
     }
     this->addWeight();
 }
 
 /**
- * @brief adds a day to the age if chicken
+ * @brief chicken drinks
  */
-void chicken::nextDay(factory *factory1) {
-    this->dayOfLife++;
-#ifdef DEBUG
-    cout << "Chicken moved to next day" << endl;
-#endif
-
-    this->feed(factory1);
-
+void chicken::drink(){
     /* water usage modification */
     if(this->DAY_7 > this->dayOfLife){
 #ifdef DEBUG
@@ -148,38 +150,22 @@ void chicken::nextDay(factory *factory1) {
 #endif
     }
 
-
-
-
     this->usedWater += this->currentWaterUsage;
 
 
+}
 
-    if(this->dayOfLife <= this->BR1_END){
-        this->BR1usedFood   += this->AVG_DAILY_FOOD_INCOME;
-        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
+/**
+ * @brief adds a day to the age if chicken
+ */
+void chicken::nextDay(factory *factory1) {
+    this->dayOfLife++;
 #ifdef DEBUG
-        cout << "Feeding BR1" << endl;
-        cout << "Total food used: " << this->BR1usedFood + this->BR2usedFood + this->BR3usedFood << " kilos" << endl;
+    cout << "Chicken moved to next day" << endl;
 #endif
-    }
-    else if(this->dayOfLife <= this->BR2_END){
-        this->BR2usedFood   += this->AVG_DAILY_FOOD_INCOME;
-        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
 
-#ifdef DEBUG
-        cout << "Feeding BR2" << endl;
-        cout << "Total food used: " << this->BR1usedFood + this->BR2usedFood + this->BR3usedFood << " kilos" << endl;
-#endif
-    }
-    else if(this->dayOfLife <= this->DAY_42){
-        this->BR3usedFood   += this->AVG_DAILY_FOOD_INCOME;
-        this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
-#ifdef DEBUG
-        cout << "Feeding BR3" << endl;
-        cout << "Total food used: " << this->BR1usedFood + this->BR2usedFood + this->BR3usedFood << " kilos" << endl;
-#endif
-    }
+    this->feed(factory1);
+    this->drink();
 
     /*
      * death here
@@ -201,7 +187,7 @@ void chicken::nextDay(factory *factory1) {
 #ifdef DEBUG
         cout << "Chicken killed by human" << endl;
 #endif
-            this->die(true, factory1);
+        this->die(true, factory1);
     }
 
 }
@@ -218,4 +204,11 @@ int chicken::getDay(){
  */
 bool chicken::isDead(){
     return this->dead;
+}
+
+/*
+ * @brief returns chick's weight
+ */
+int chicken::getWeight(){
+    return this->weight;
 }
