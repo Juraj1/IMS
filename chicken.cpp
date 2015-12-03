@@ -105,7 +105,6 @@ void chicken::feed(factory *factory1) {
 
         factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR3_finisher);
     }
-    this->addWeight();
 }
 
 /**
@@ -166,6 +165,8 @@ void chicken::nextDay(factory *factory1) {
 
     this->feed(factory1);
     this->drink();
+    this->addWeight();
+
 
     /*
      * death here
