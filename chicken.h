@@ -118,7 +118,7 @@ public:
      */
     chicken();
     void    die(bool, factory*);    /* if false is set, it dies from disease, if true, it was killed by a man */
-    void    feed(factory*);         /* feed everyday by specified time */
+    void feed();         /* feed everyday by specified time */
     void    addWeight();            /* adds weight based on dayOfLife */
     void    nextDay(factory*);      /* swaps discrete time to next day */
     void    drink();                /* adds water */

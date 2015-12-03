@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{amsmath}
+\usepackage{caption}
 
 \hypersetup{
     colorlinks,
@@ -36,6 +37,7 @@
 
 \renewcommand{\contentsname}{Obsah}
 \tableofcontents
+
 
 \renewcommand{\figurename}{Obrázek}
 
@@ -180,17 +182,60 @@ zprávu o příchodu následujícího dne. Po přijetí této zprávy objekt ku�
 Poté objekt kuře zkontroluje booleovskou hodnotu signalizující, zda je nakaženo a má umřít anebo žije další den.
 Tato booleovská hodnota je nastavena na true v 0.05\% případů. Kontrola se provádí každý den a dohromady to dává ~2\% celkový úhyn.
 Pokud kuře uhyne, zvýší se čitač v objektu drůbežárny a s mrtvým objektem kuře se nadále nepracuje.
-Po ukončení výkrmu se zavolá metoda drůbežárny \textit{statistics()}, která vyhodnotí údaje o výkrmu a vytvoří vinanční analýzu.
+Po ukončení výkrmu se zavolá metoda drůbežárny \textit{statistics()}, která vyhodnotí údaje o výkrmu a vytvoří finanční analýzu.
 
 \section{Podstata simulačních experimentů a jejich průběh}\label{experimenty}
-TODO
+TODO\newline
+Podstatou simulačních experimentů je zjišťování, za jakých podmínek je drůbežárna ekonomicky udržitelná.
+\subsection{Postup experimentování}
+Průběh experimentů probíhal opakovaným spouštěním simulace s různými hodnotami klíčových parametrů, jako
+jsou např. ceny krmiva, počet zaměstnanců, počet kuřat, mzdy zaměstnanců a cena vody.
+Výsledky autoři porovnali a vytvořili z nich závěry o udržitelnosti drůbežárny.
+\subsection{Experimenty}
+V této kapitole se budeme zabývat vybranými experimenty.
+\subsubsection{Experiment č.1}
+Jako vstupní podmínky pro tento experiment jsou parametry nastaveny následovně.
+Drůbežárna má 30 zaměstnanců, jejichž průměrná mzda je dvacet tisíc korun.
 
 \section{Shrnutí simulačních experimentů a závěr}\label{zaver}
 TODO
 
+V tabulce \ref{tabulka1} můžeme vidět, že při současné ekonomické situaci, kdy dělník/ce v drůbežárně a na jatkách
+má mzdu mezi jedenácti až čtrnácti tisící korun, technik mezi dvaceti až třiceti tisíci a vedoucí mezi třiceti
+a čtyřiceti tisíci korun a při ceně za kg vykuchaného kuřete 46 Kč/kg se hranice udržitelnosti pohybuje okolo 
+21 045 prodaných kuřat.
+
+\begin{center}
+\resizebox{\columnwidth}{!}{
+ \label{tabulka1}
+
+ \begin{tabular}{|c | c | c | c | c | c|}
+  \hline
+  Počet zaměstnanců 	& Průměrná mzda[Kč] 	& Počet nakoupených kuřat 	& Počet prodaných kuřat & Cena za kg kuřete[Kč]	& Výsledek[Kč]\\
+  \hline\hline
+  30 			& 20 000 		& 100 000 			& 97 575 		& 46	 		& 2 853 639\\
+  30 			& 20 000 		& 30 000  			& 29 293 		& 46	 		& 330 553\\
+  30 			& 20 000 		& 21 600  			& 21 045		& 46			& 821\\
+  30 			& 20 000 		& 21 000  			& 20 520		& 46			& -19 644\\
+  
+  
+  \hline
+ \end{tabular}
+ 
+}
+\captionof{table}{Tabulka zobrazující současnou ekonomickou situaci} 
+\end{center}
+
+
+\pagebreak
 \renewcommand\listfigurename{Seznam obrázků}
 \listoffigures
 \addcontentsline{toc}{section}{\listfigurename}
+
+
+\renewcommand{\listtablename}{Seznam tabulek}
+\listoftables
+\addcontentsline{toc}{section}{\listtablename}
 
 
 \renewcommand{\refname}{Zdroje}

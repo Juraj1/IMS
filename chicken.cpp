@@ -86,7 +86,7 @@ void chicken::die(bool man, factory *factory1) {
 /**
  * @brief feeds chicken
  */
-void chicken::feed(factory *factory1) {
+void chicken::feed() {
     if(this->dayOfLife < BR1_END){
         this->BR1usedFood   += this->AVG_DAILY_FOOD_INCOME;
         this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
@@ -157,7 +157,7 @@ void chicken::nextDay(factory *factory1) {
     cout << "Chicken moved to next day" << endl;
 #endif
 
-    this->feed(factory1);
+    this->feed();
     this->drink();
     this->addWeight();
 
