@@ -11,17 +11,18 @@ using namespace std;
  * @brief constructor
  */
 factory::factory(){
+
     /* conversion from tonnes to kilos*/
     this->BR1FoodAmount = this->INITIAL_FOOD_AMOUNT;
     this->BR2FoodAmount = this->INITIAL_FOOD_AMOUNT;
     this->BR3FoodAmount = this->INITIAL_FOOD_AMOUNT;
 
-    this->iterationCount = 1;
+    this->iterationCount    = 1;
 
     this->dayOfWork         = 0;
 
-    this->harvestedChicken = 0;
-    this->destroyedChicken = 0;
+    this->harvestedChicken  = 0;
+    this->destroyedChicken  = 0;
 
     this->BR1foodAmountUsed = 0;
     this->BR2foodAmountUsed = 0;
@@ -31,9 +32,20 @@ factory::factory(){
 
     this->totalWaterUsed    = 0;
 
+    this->totalChickWeight  = 0;
+
     this->BR1foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT);
     this->BR2foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT);
     this->BR3foodDelivery.push_back(this->INITIAL_FOOD_AMOUNT);
+
+    /* default values */
+    this->pricePerYoungChick  = 8;        /* czech crowns per 1 1 day chick */
+    this->chickPricePerKg     = 65;       /* 65kc/kg */
+    this->BR1PricePerKg       = 15;       /* 15kc/kg */
+    this->BR2PricePerKg       = 14;
+    this->BR3PricePerKg       = 10;
+    this->employeeCount       = 30;
+    this->averagePayPerIteration = 566.66;
 
     srand(time(0));
 
@@ -44,44 +56,6 @@ factory::factory(){
     cout << "Factory: Food delivery of BR3 " << this->BR3FoodAmount << " kg" << endl;
 #endif
 
-}
-
-
-/**
- * @brief substract food from food pile
- * @param amount amount of food to substract in kilos
- */
-void factory::substractFood(float amount, int type) {
-    switch(type){
-        case 1: /* BR1 */
-            this->BR1FoodAmount -= amount;
-            /* when factory runs out of food, it orders 100000 kg */
-            if(1 > this->BR1FoodAmount){
-                this->addFood(this->INITIAL_FOOD_AMOUNT, 1); /* BR1 */
-            }
-            break;
-        case 2: /* BR2 */
-            this->BR2FoodAmount -= amount;
-            if(1 > this->BR2FoodAmount){
-                this->addFood(this->INITIAL_FOOD_AMOUNT, 2); /* BR2*/
-            }
-            break;
-        case 3: /* BR3 */
-            this->BR3FoodAmount -= amount;
-            if(1 > this->BR3FoodAmount){
-                this->addFood(this->INITIAL_FOOD_AMOUNT, 3); /* BR3 */
-            }
-            break;
-        default:
-            return;
-    }
-#ifdef DEBUG
-    cout << "Factory: " << amount << " grams of food substracted." << endl;
-    cout << "Factory: " << this->BR1FoodAmount << " kilos of BR1 left" << endl;
-    cout << "Factory: " << this->BR2FoodAmount << " kilos of BR2 left" << endl;
-    cout << "Factory: " << this->BR3FoodAmount << " kilos of BR3 left" << endl;
-
-#endif
 }
 
 /**
@@ -149,6 +123,8 @@ void factory::harvestChick(chicken *chick) {
     this->totalFoodUsed += chick->totalFoodUsed;
     /* water used */
     this->totalWaterUsed += chick->usedWater;
+    this->totalChickWeight += chick->getWeight();
+
 }
 
 
@@ -166,34 +142,43 @@ void factory::destroyChick() {
 /**
  * @brief print statistics
  */
-void factory::statistics() {
-    /* count total food */
-    int BR1TotalDelivery = 0;
-    int BR2TotalDelivery = 0;
-    int BR3TotalDelivery = 0;
+void factory::statistics(std::vector<chicken> *chick) {
 
-    for(std::vector<int>::iterator it = this->BR1foodDelivery.begin(); it != this->BR1foodDelivery.end(); it++){
-        BR1TotalDelivery    += *it;
-    }
+    double ChickSoldFor     = this->totalChickWeight/1000 * this->chickPricePerKg;
+    double ChickBoughtFor   = chick->size() * this->pricePerYoungChick;
+    double BR1Cost          = this->BR1foodAmountUsed * this->BR1PricePerKg;
+    double BR2Cost          = this->BR2foodAmountUsed * this->BR2PricePerKg;
+    double BR3Cost          = this->BR3foodAmountUsed * this->BR3PricePerKg;
+    double TotalFoodCost    = BR1Cost + BR2Cost + BR3Cost;
+    double TotalWaterCost   = this->waterCostPerL * this->totalWaterUsed;
+    int salaries            = this->ITER_LENGTH * this->employeeCount * this->averagePayPerIteration;
 
-    for(std::vector<int>::iterator it = this->BR2foodDelivery.begin(); it != this->BR2foodDelivery.end(); it++){
-        BR2TotalDelivery    += *it;
-    }
+    cout << fixed;
 
-    for(std::vector<int>::iterator it = this->BR3foodDelivery.begin(); it != this->BR3foodDelivery.end(); it++){
-        BR3TotalDelivery    += *it;
-    }
+    cout    << "########## TOTAL STATISTICS NO."    << this->iterationCount << " ##########"                   << endl;
+    cout    << "Chicken delivered:       " << this->harvestedChicken + this->destroyedChicken                  << endl;
+    cout    << "Chicken infected:        " << this->destroyedChicken                                           << endl;
+    cout    << "Chicken harvested:       " << this->harvestedChicken                                           << endl;
+    cout    << "Total marketable weight: " << this->totalChickWeight / 1000 << " kilograms"                    << endl;
+    cout    << "BR1 food used:           " << this->BR1foodAmountUsed << " kilograms"                          << endl;
+    cout    << "BR2 food used:           " << this->BR2foodAmountUsed << " kilograms"                          << endl;
+    cout    << "BR3 food used:           " << this->BR3foodAmountUsed << " kilograms"                          << endl;
+    cout    << "Total food used:         " << this->totalFoodUsed << " kilograms"                              << endl;
+    cout    << "Total water used:        " << this->totalWaterUsed << " liters\n"                              << endl;
+    cout    << "### Financial report NO. " << this->iterationCount << "###"                                    << endl;
 
-    cout    << "########## TOTAL STATISTICS NO." << this->iterationCount++ << " ##########"                 << endl;
-    cout    << "Chicken delivered:    " << this->harvestedChicken + this->destroyedChicken                  << endl;
-    cout    << "Chicken infected:     " << this->destroyedChicken                                           << endl;
-    cout    << "Chicken harvested     " << this->harvestedChicken                                           << endl;
-    cout    << "BR1 food delivered:   " << BR1TotalDelivery << " kilograms"                                 << endl;
-    cout    << "BR1 food used:        " << this->BR1foodAmountUsed << " kilograms"                          << endl;
-    cout    << "BR2 food delivered:   " << BR2TotalDelivery << " kilograms"                                 << endl;
-    cout    << "BR2 food used:        " << this->BR2foodAmountUsed << " kilograms"                          << endl;
-    cout    << "BR3 food delivered:   " << BR3TotalDelivery << " kilograms"                                 << endl;
-    cout    << "BR3 food used:        " << this->BR3foodAmountUsed << " kilograms"                          << endl;
-    cout    << "Total food used:      " << this->totalFoodUsed << " kilograms"                              << endl;
-    cout    << "Total water used      " << this->totalWaterUsed << " liters"                                << endl;
+    cout    << "Employee count:                        " << this->employeeCount                                             << endl;
+    cout    << "Total employee salaries per iteration: " << salaries            << " Kc"                                    << endl;
+    cout    << "Chicken bought:                        " << chick->size()                                                   << endl;
+    cout    << "Chickens bought for:                   " << ChickBoughtFor << " Kc"                                         << endl;
+    cout    << "Chickens sold for:                     " << ChickSoldFor  << " Kc"                                          << endl;
+    cout    << "Chicken profit:                        " << ChickSoldFor - ChickBoughtFor   << " Kc"                        << endl;
+    cout    << "BR1 food cost:                         " << BR1Cost << " Kc"                                                << endl;
+    cout    << "BR2 food cost:                         " << BR2Cost << " Kc"                                                << endl;
+    cout    << "BR3 food cost:                         " << BR3Cost << " Kc"                                                << endl;
+    cout    << "Total food cost:                       " << TotalFoodCost << " Kc"                                          << endl;
+    cout    << "Used water cost:                       " << TotalWaterCost << " Kc"                                         << endl;
+    cout    << "Total balance per iteration:           " << ChickSoldFor    - ChickBoughtFor - TotalFoodCost - TotalWaterCost
+                                                                            - salaries << " Kc"                             << endl;
+    this->iterationCount++;
 }

@@ -12,6 +12,7 @@ class factory;
 #include <iostream>
 #include <vector>
 
+
 #include "chicken.h"
 
 
@@ -22,17 +23,28 @@ private:
     double BR3FoodAmount;    /* kilos */
 
     int iterationCount;
-    int deliveretChicken;
-
+    double totalChickWeight;
     /*
      * constants
      */
-    const int INITIAL_FOOD_AMOUNT = 100000; /* kilos of food */
+    const int INITIAL_FOOD_AMOUNT   = 100000;   /* kilos of food */
+    const int ITER_LENGTH           = 42;       /* iteration length */
+
+
 
 public:
     /*
      * variables
      */
+    int pricePerYoungChick  ;        /* czech crowns per 1 1 day chick */
+    int chickPricePerKg     ;        /* 65kc/kg */
+    int BR1PricePerKg       ;        /* 15kc/kg */
+    int BR2PricePerKg       ;
+    int BR3PricePerKg       ;
+    int employeeCount       ;
+    double waterCostPerL;     /* price per liter, data from 2015 */
+
+    double averagePayPerIteration;
 
     int     dayOfWork;
     int     harvestedChicken;   /* total count of harvested chicken */
@@ -58,9 +70,8 @@ public:
     void harvestChick(chicken*);
     void destroyChick();
     void addFood(int, int);
-    void substractFood(float, int);
     void nextDay(std::vector<chicken> *);
-    void statistics();
+    void statistics(std::vector<chicken> *);
 
 
 };

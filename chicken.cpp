@@ -90,20 +90,14 @@ void chicken::feed(factory *factory1) {
     if(this->dayOfLife < BR1_END){
         this->BR1usedFood   += this->AVG_DAILY_FOOD_INCOME;
         this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
-
-        factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR1_starter);
     }
     else if(this->dayOfLife < BR2_END){
         this->BR2usedFood   += this->AVG_DAILY_FOOD_INCOME;
         this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
-
-        factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR2_grower);
     }
     else if(this->dayOfLife <= this->DAY_42){
         this->BR3usedFood   += this->AVG_DAILY_FOOD_INCOME;
         this->totalFoodUsed += this->AVG_DAILY_FOOD_INCOME;
-
-        factory1->substractFood(this->AVG_DAILY_FOOD_INCOME, this->BR3_finisher);
     }
 }
 
