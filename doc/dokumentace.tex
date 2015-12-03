@@ -4,6 +4,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{amsmath}
 
 \hypersetup{
     colorlinks,
@@ -51,10 +53,10 @@ V tomto textu bude čtenář seznámen s vytvářením modelu pro diskrétní si
 Je zde popsáno studium autorů, kde autoři získávají potřebné informace
 pro vytvoření simulačního modelu na základě reálného modelu drůbežárny.
 \par
-Na základě experimentů bude demonstrován růst broilerů, jejich úmrtnost
-a ekonomická udržitelnost drůbežárny za současných ekonomických podmínek.
-A také jak se pohyb ceny kuřat projeví v nákladech podniku. 
-\subsection{Zdroje informací pro modelování\cite{modelovani}}
+Na základě experimentů bude demonstrována ekonomická udržitelnost
+drůbežárny za současných ekonomických podmínek.
+
+\subsection{Zdroje informací pro modelování\cite{modelovani}}\label{zdroje}
 Jako zdroj informací autoři využili oficiální materiály firmy Aviagen\cite{aviagen}.
 Jedná se o firmu zajišťující dovoz jednodenních kuřat do drůbežáren ve 130 zemích světa.
 Autoři se zaměřili konkrétně na broilery značky Ross\textsuperscript{\textregistered},
@@ -62,7 +64,8 @@ jejichž podmínky pro pěstování jsou popsány v dokumentu poskytnutém firmo
 na jejich oficiálních webových stránkách. Autoři následně využili tyto informace k
 vytvoření abstraktního modelu\cite{abstract_model}, který byl posléze převeden na simulační model\cite{simulation_model}
 simulující farmu pro výkrm broilerů Ross\textsuperscript{\textregistered}. 
-\subsection{Validace a verifikace}
+
+\subsection{Validace a verifikace}\label{validaceVerifikace}
 TODO model zvalidovan pomoci smernic EU
 
 
@@ -70,13 +73,13 @@ TODO model zvalidovan pomoci smernic EU
 % Téma a použité metody
 %
 
-\section{Rozbor tématu, použitých metod a technologií}
-Drůbežáren může být několik druhů. Patří mezi ně zařízení soustředící 
-na produkci nosných slepic, zařízení na produkci vajec, zařízení 
+\section{Rozbor tématu, použitých metod a technologií}\label{rozbor}
+Drůbežáren může být několik druhů. Patří mezi ně drůbežárny soustředící 
+na produkci nosných slepic, drůbežárny na produkci vajec, drůbežárny 
 na produkci kuřat určených k rychlému výkrmu, tzv. broilerů a další.
-V této modelové studii se autoři zaměřili na zařízení pro produkci broilerů.
+V této modelové studii se autoři zaměřili na drůbežárny pro produkci broilerů.
 \par
-Kuřata určena pro výkrm, dovezena do zařízení jsou stará jeden den 
+Kuřata určena pro výkrm, dovezena do drůbežárny jsou stará jeden den 
 a važí 40 gramů. Prvních 10 dní jsou krmena krmivem typu Starter. Toto krmivo 
 musí zajistit dostatečný obsah živin pro kuřata, která v prvních deseti dnech
 po vylíhnutí konzumují nejmenší objem krmiva, avšak jejich nároky na výživnost krmiva
@@ -99,34 +102,90 @@ a nezůstávají v něm rezidua. Avšak je třeba zachovat energetickou hodnotu 
 udržení hmotnostního přírůstku kuřat. Kuřata jsou po čtyřiceti až dvaačtyřiceti dnech zabita
 a jejich maso je zpracováno.
 
-
-\subsection{Postupy}
-TODO\newline
+\subsection{Postupy}\label{postupy}
 Po nastudování a sepsání potřebných informací autoři vytvořili abstraktní model v podobě
-petriho sítě\cite{petriho_sit} pro život kuřete. Viz. obrázek \ref{obr:petri_kure}.\newline
+Petriho sítě\cite{petriho_sit} života kuřete. Viz. obrázek \ref{obr:petri_kure}.
+\par
+Pro vytvoření simulačního modelu měli autoři předepsané jazyky C nebo C++. Autoři se rozhodli
+pro C++ kvůli možnosti objektového návrhu, který umožňuje provést abstrakci pomocí objektů
+a tato abstrakce umožňuje objektu specifické chování na základě vztupních podmínek.
+Při porovnání s jazykem C, kde je možno implementovat pseudoobjektový přístup, je objektový 
+přístup jazyka C++ intuitivnější a umožňuje jednodušší práci s jednotlivými objekty.
+Každé kuře je reprezentováno objektem a s těmito objekty pracuje objekt továrna, který uchovává
+data o chovu kuřat. Více o konceptu v kapitole \ref{koncepce}.
+
+\subsection{Původy metod}\label{puvod}
+Informace pro práci s jazykem C++ autoři čerpali ze semináře jazyka C++\cite{cpp}
+přednášeného doktorem Peringerem. Informace pro práci s objekty byly čerpány
+z předmětu IPP\cite{ipp}.
 
 
+
+
+
+\section{Koncepce}\label{koncepce}
+TODO
+Jelikož nás pouze zajímá ekonomická situace drůbežárny, můžeme z modelu vyloučit detaily
+o růstu kuřete. Pro vyhodnocení ekonomické situace nám stačí pouze množství snězeného krmiva,
+spotřebované vody, výsledná váha kuřete, kupní cena jednodenního broileru Ross\textsuperscript\textregistered
+a velkoobchodní cena vykrmeného broileru.
+\par
+Koncepční model\cite{concept_model} je vytvořen jako diskrétní model, kde časovou osu reprezentují dny věku kuřete.
+Kuře v modelu je reprezentováno jako jako Markovův proces\cite{markovuv_proces},
+kdy každý den proces mění svůj stav na základě svého aktuálního věku.
+\par
+Život kuřete je modelován Petriho sítí, která zobrazena je na obrázku \ref{obr:petri_kure}.
+Po dovezení kuřete začíná dvaačtyřiceti denní výkrm, kde je kuře postupně krmeno, napájeno, v jehož důsledku
+přibírá na váze. Kuře taky může umřít před datem zpracování a to je znázorněno přechodem\cite{prechod} s pravděpodobností 0.05\%.
+Pokud přežije, přechází do dalšího dne a cyklus se opakuje. Jak bylo již řečeno, časová osa modelu je reprezentována dny
+věku kuřat. O posuny vpřed na časové ose se stará drůbežárna, jejichž lze vidět na obrázku \ref{obr:drubezarna}. 
+Po zpracování jsou data o spotřebě kuřete předána drůbežárně, ta je vyhodnotí a na tomto základě vytvoří finanční zrávu.
+
+\subsection{Zdůvodnění způsobu vyjádření konceptuálního modelu}
+Na obrázku \ref{obr:petri_kure} je zobrazen model života kuřete. Petriho síť byla vybrána, jelikož umožňuje
+jednoduché časování přechodů a síť lze bez větších obtíží transformovat na simulační model v jazyce C++, kde přechody
+označují volání metod odpovídajícího objektu v simulačním modelu.
+
+\subsection{Konceptuální model}
 \begin{figure}[h]
-\caption{Petriho síť popisující život kuřete}
+\caption{Petriho síť modelující život kuřete}
 \includegraphics[scale=0.4]{kure.png}
 \label{obr:petri_kure}
 \end{figure}
 
+Na obrázku \ref{obr:drubezarna} můžeme vidět model drůbežárny samotné v podobě Petriho sítě. Můžeme vidět, že po přijeťí kuřat
+se model dostane do stavu, kde se rozhoduje, jestli se bude posouvat po časové ose anebo jestli zpracuje
+kuřata. Proměnná A vyjadřuje počet tokenů(teček), které reprezentují množinu kuřat vynásobenou počtem dní výkrmu,
+nebo-li: 
+$A=\textit{počet kuřat }*\textit{ dny výkrmu}$.
+Dokud model iteruje, volá se metoda simulačního modelu \textit{nextDay()}, které posouvá simulační model po časové ose doprava
+a až bude proměnná A rovna nule, provede se přechod, který symbolizuje volání metody, která zpracuje kuřata. Následně 
+se vytvoří finanční zpráva a simulace se ukončí.
 
 
-\subsection{Původy metod}
+\begin{figure}[h]
+\caption{Petriho síť modelující provoz drůbežárny}
+\includegraphics[scale=0.4]{drubezarna.png}
+\label{obr:drubezarna}
+\end{figure}
+
+\pagebreak
+
+\section{Architektura simulačního modelu}\label{architektura}
+TODO\newline
+Architektura simulačního modelu je postavena na objektovém přístupu. Simulační model se skládá ze dvou tříd,
+třídy factory, a třídy chicken. Z třídy \textit{factory} se vytvoří objekt drůbežárny, a z třídy \textit{chicken}
+se vytvoří jednotlivá kuřata, která se seřadí do vektoru \textit{chick}. S tímto vektorem poté pracuje továrna tak,
+že nad ním volá metodu \textit{nextDay()}(lze vidět na obrázku \ref{obr:drubezarna}), která zašle objektu kuřete
+zprávu o příchodu následujícího dne. Po přijetí této zprávy objekt kuře simuluje krmení, pití a tloustnutí.
+Poté objekt kuře zkontroluje booleovskou hodnotu signalizující, zda je nakaženo a má umřít anebo žije další den.
+Tato booleovská hodnota je nastavena na true v 0.05\% případů. Kontrola se provádí každý den a dohromady to dává ~2\% celkový úhyn.
+Pokud kuře uhyne, zvýší se čitač v objektu drůbežárny a s mrtvým objektem kuře se nadále nepracuje.
+
+\section{Podstata simulačních experimentů a jejich průběh}\label{experimenty}
 TODO
 
-\section{Koncepce}
-TODO
-
-\section{Architektura simulačního modelu}
-TODO
-
-\section{Podstata simulačních experimentů a jejich průběh}
-TODO
-
-\section{Shrnutí simulačních experimentů a závěr}
+\section{Shrnutí simulačních experimentů a závěr}\label{zaver}
 TODO
 
 \renewcommand\listfigurename{Seznam obrázků}
@@ -144,6 +203,7 @@ TODO
 
 \begin{thebibliography}{99}
 
+\bibitem{markovuv_proces}
 \bibitem{aviagen}
 \bibitem{ross}
 \bibitem{concept_model}
@@ -151,6 +211,8 @@ TODO
 \bibitem{model}
 \bibitem{modelovani}
 \bibitem{petriho_sit}
+\bibitem{prechod}
+
 
 
 \end{thebibliography}
