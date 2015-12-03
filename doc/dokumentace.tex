@@ -141,7 +141,7 @@ Pokud přežije, přechází do dalšího dne a cyklus se opakuje. Jak bylo již
 věku kuřat. O posuny vpřed na časové ose se stará drůbežárna, jejichž lze vidět na obrázku \ref{obr:drubezarna}. 
 Po zpracování jsou data o spotřebě kuřete předána drůbežárně, ta je vyhodnotí a na tomto základě vytvoří finanční zrávu.
 
-\subsection{Zdůvodnění způsobu vyjádření konceptuálního modelu}
+\subsection{Zdůvodnění způsobu vyjádření konceptuálního\newline modelu}
 Na obrázku \ref{obr:petri_kure} je zobrazen model života kuřete. Petriho síť byla vybrána, jelikož umožňuje
 jednoduché časování přechodů a síť lze bez větších obtíží transformovat na simulační model v jazyce C++, kde přechody
 označují volání metod odpovídajícího objektu v simulačním modelu.
@@ -172,7 +172,6 @@ se vytvoří finanční zpráva a simulace se ukončí.
 \pagebreak
 
 \section{Architektura simulačního modelu}\label{architektura}
-TODO\newline
 Architektura simulačního modelu je postavena na objektovém přístupu. Simulační model se skládá ze dvou tříd,
 třídy factory, a třídy chicken. Z třídy \textit{factory} se vytvoří objekt drůbežárny, a z třídy \textit{chicken}
 se vytvoří jednotlivá kuřata, která se seřadí do vektoru \textit{chick}. S tímto vektorem poté pracuje továrna tak,
@@ -181,6 +180,7 @@ zprávu o příchodu následujícího dne. Po přijetí této zprávy objekt ku�
 Poté objekt kuře zkontroluje booleovskou hodnotu signalizující, zda je nakaženo a má umřít anebo žije další den.
 Tato booleovská hodnota je nastavena na true v 0.05\% případů. Kontrola se provádí každý den a dohromady to dává ~2\% celkový úhyn.
 Pokud kuře uhyne, zvýší se čitač v objektu drůbežárny a s mrtvým objektem kuře se nadále nepracuje.
+Po ukončení výkrmu se zavolá metoda drůbežárny \textit{statistics()}, která vyhodnotí údaje o výkrmu a vytvoří vinanční analýzu.
 
 \section{Podstata simulačních experimentů a jejich průběh}\label{experimenty}
 TODO
