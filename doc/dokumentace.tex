@@ -62,7 +62,7 @@ drůbežárny za současných ekonomických podmínek.
 Jako zdroj informací autoři využili oficiální materiály firmy Aviagen\cite{aviagen}.
 Jedná se o firmu zajišťující dovoz jednodenních kuřat do drůbežáren ve 130 zemích světa.
 Autoři se zaměřili konkrétně na broilery značky Ross\textsuperscript{\textregistered},
-jejichž podmínky pro pěstování jsou popsány v dokumentu poskytnutém firmou Aviagen\cite{ross}
+jejichž podmínky pro chov jsou popsány v dokumentu poskytnutém firmou Aviagen\cite{ross}
 na jejich oficiálních webových stránkách. Autoři následně využili tyto informace k
 vytvoření abstraktního modelu\cite{abstract_model}, který byl posléze převeden na simulační model\cite{simulation_model}
 simulující farmu pro výkrm broilerů Ross\textsuperscript{\textregistered}. 
@@ -92,7 +92,7 @@ a zda bude správně růst.
 Druhá část výkrmu je dlouhá 14 dní, od 11. dne po 25. den. V této části se využívá krmivo
 Grower, a je podáváno ve formě větších granulí, než tomu bylo u krmiva Starter.
 Rapidně se zvyšuje váhový přírustek broilerů, jelikož obsahuje menší procento bílkovin
-a aminokyselin, avšak jeho metabolizovatelná nergetická hodnota se zvýšila. Při přechodu
+a aminokyselin, avšak jeho metabolizovatelná energetická hodnota se zvýšila. Při přechodu
 mezi krmivy Starter a Grower je třeba pozorně sledovat kuřata a musí se předejít zmenšení
 příjmu potravy nebo oslabení růstu.
 \par
@@ -105,12 +105,12 @@ udržení hmotnostního přírůstku kuřat. Kuřata jsou po čtyřiceti až dva
 a jejich maso je zpracováno.
 
 \subsection{Postupy}\label{postupy}
-Po nastudování a sepsání potřebných informací autoři vytvořili abstraktní model v podobě
-Petriho sítě\cite{petriho_sit} života kuřete. Viz. obrázek \ref{obr:petri_kure}.
+Po nastudování a sepsání potřebných informací autoři vytvořili abstraktní model
+života kuřete v podobě Petriho sítě\cite{petriho_sit}. Viz. obrázek \ref{obr:petri_kure}.
 \par
 Pro vytvoření simulačního modelu měli autoři předepsané jazyky C nebo C++. Autoři se rozhodli
 pro C++ kvůli možnosti objektového návrhu, který umožňuje provést abstrakci pomocí objektů
-a tato abstrakce umožňuje objektu specifické chování na základě vztupních podmínek.
+a tato abstrakce umožňuje objektu specifické chování na základě vstupních podmínek.
 Při porovnání s jazykem C, kde je možno implementovat pseudoobjektový přístup, je objektový 
 přístup jazyka C++ intuitivnější a umožňuje jednodušší práci s jednotlivými objekty.
 Každé kuře je reprezentováno objektem a s těmito objekty pracuje objekt továrna, který uchovává
@@ -126,10 +126,10 @@ z předmětu IPP\cite{ipp}.
 
 
 \section{Koncepce}\label{koncepce}
-TODO
 Jelikož nás pouze zajímá ekonomická situace drůbežárny, můžeme z modelu vyloučit detaily
 o růstu kuřete. Pro vyhodnocení ekonomické situace nám stačí pouze množství snězeného krmiva,
-spotřebované vody, výsledná váha kuřete, kupní cena jednodenního broileru Ross\textsuperscript\textregistered
+spotřebované vody, výsledná váha kuřete, počet zpracovaných kuřat, 
+kupní cena jednodenního broileru Ross\textsuperscript\textregistered
 a velkoobchodní cena vykrmeného broileru.
 \par
 Koncepční model\cite{concept_model} je vytvořen jako diskrétní model, kde časovou osu reprezentují dny věku kuřete.
@@ -185,12 +185,11 @@ Pokud kuře uhyne, zvýší se čitač v objektu drůbežárny a s mrtvým objek
 Po ukončení výkrmu se zavolá metoda drůbežárny \textit{statistics()}, která vyhodnotí údaje o výkrmu a vytvoří finanční analýzu.
 
 \section{Podstata simulačních experimentů a jejich průběh}\label{experimenty}
-TODO\newline
 Podstatou simulačních experimentů je zjišťování, za jakých podmínek je podnik ekonomicky udržitelný.
 \subsection{Postup experimentování}
 Průběh experimentů probíhal opakovaným spouštěním simulace s různými hodnotami klíčových parametrů, jako
-jsou např. ceny krmiva, počet zaměstnanců, počet kuřat, mzdy zaměstnanců a cena vody.
-Výsledky autoři porovnali a vytvořili z nich závěry o udržitelnosti drůbežárny.
+jsou např. ceny krmiva, počet zaměstnanců, počet kuřat, mzdy zaměstnanců a cena krmiva.
+Výsledky autoři porovnali a vytvořili z nich závěr o udržitelnosti drůbežárny.
 
 \subsection{Experimenty}
 V této kapitole se budeme zabývat vybranými experimenty, na kterých si ukážeme pohyb hranice udržitelnosti.
