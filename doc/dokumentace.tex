@@ -186,45 +186,72 @@ Po ukončení výkrmu se zavolá metoda drůbežárny \textit{statistics()}, kte
 
 \section{Podstata simulačních experimentů a jejich průběh}\label{experimenty}
 TODO\newline
-Podstatou simulačních experimentů je zjišťování, za jakých podmínek je drůbežárna ekonomicky udržitelná.
+Podstatou simulačních experimentů je zjišťování, za jakých podmínek je podnik ekonomicky udržitelný.
 \subsection{Postup experimentování}
 Průběh experimentů probíhal opakovaným spouštěním simulace s různými hodnotami klíčových parametrů, jako
 jsou např. ceny krmiva, počet zaměstnanců, počet kuřat, mzdy zaměstnanců a cena vody.
 Výsledky autoři porovnali a vytvořili z nich závěry o udržitelnosti drůbežárny.
+
 \subsection{Experimenty}
-V této kapitole se budeme zabývat vybranými experimenty.
+V této kapitole se budeme zabývat vybranými experimenty, na kterých si ukážeme pohyb hranice udržitelnosti.
 \subsubsection{Experiment č.1}
-Jako vstupní podmínky pro tento experiment jsou parametry nastaveny následovně.
-Drůbežárna má 30 zaměstnanců, jejichž průměrná mzda je dvacet tisíc korun.
+Jako vstupní parametry pro tento experiment jsou nastaveny následovně.
+Firma má 30 zaměstnanců, jejichž průměrná mzda je dvacet tisíc korun.
+Cena krmiva je stanovena pro BR1 na 15 Kč/kg, BR2 na 14 Kč/kg a BR3 na 12 Kč/kg.
+Cena vody je stanovena na 0.08104 Kč za litr a do drůbežárny bylo přivezeno 100~000 kuřat při 
+ceně 8 Kč za jedno jednodenní kuře.
+Po nastavení těchto parametrů byla spuštěna simulace, která měla následující výstupy.
+\par
+Z 100~000 kuřat se 2457 nedožilo zpracování, tudíž prodat se mohlo pouze 97~543 kuřat o celkové
+váze 202~889.44 kilogramů při prodejní ceně 46 korun za kilogram, což dává 9~332~914 Kč.
+Přičemž kuřata jsme koupili za 800~000 Kč, na plat zaměstnanců během výkrmu šlo 839~160 Kč.
+Cena použitého krmiva BR1 byla 1~254~149 Kč, BR2 byla 1~950~899 Kč a BR3 byla 2 006~639 Kč.
+Cena vody byla 68~022 Kč. Z toho nám plyne celkový zisk 2~414~046 Kč.
+\subsubsection{Experiment č.2}
+Na experimentu číslo 2 chceme ukázat jak se projeví počet nakoupených kuřat na 
+zisk drůbežárny. Vstupní parametry jsou nastaveny, až na vyjímku 30~000 nakoupených kuřat, stejně
+jako v předchozích experimentech.
+\par
+Na výsledku tohoto experimentu můžeme vidět, že i při počátečním počtu 30~000 kuřat 
+a 29~287 prodaných kuřat může drůbežárna existovat, jelikož zisk je 137~803 Kč.
+\subsubsection{Experiment č.3}\label{ex3}
+Na experimentu číslo 3 chceme ukázat hranici udržitelnosti drůbežárny bez propouštění
+zaměstnanců.
+Vstupní parametry jsou nastaveny, až na vyjímku 25~800 nakoupených kuřat, stejně.
+\par
+Výsledek experimentu nám ukázal, že u hranice udržitelnosti je na 25~800 nakoupených
+kuřatech, jelikož počet prodaných kuřat se pohybuje okolo 25~123 kuřat.
+\subsubsection{Experiment č.4}
+Na experimentu číslo 4 chceme ukázat posunutí hranice udržitelnosti drůbežárny po propuštění
+zaměstnanců.
+Ve vstupních parametrech provedeme změnu a nastavíme počet zaměstnanců na 20 a posuneme 
+počet koupených kuřat na 17 200.
+\par
+Výsledek experimentu nám ukázal, že u hranice udržitelnosti se sníží na 17~200 nakoupených
+kuřat, přičemž jsme prodali 16~792 kuřat. Celkový zisk je 718 Kč, což není mnoho, ale je možno
+zaplatit všechny zaměstnance.
+\subsubsection{Experiment č.5}
+Na exprimentu č. 5 chceme ukázat jaký vliv má na hranici udržitelnosti cena prodáváných kuřat.
+Nastavíme počet zaměstnanců opět na 30, jejich průměrný plat stále na 20 000 Kč. Cena krmiva zůstane stejná,
+avšak cena za kilogram kuřete vzroste o 10 Kč na 56 Kč a počet kuřat nastavíme na 15~925 kusů.
+\par
+Můžeme vidět, že při ceně za kilogram kuřete o 10 Kč větší se hranice udržitelnosti snížila na hranici okolo 15~925 kusů,
+jelikož výsledná ztráta je 462 Kč.
+\subsubsection{Experiment č.6}
+Experimentem č. 6 chceme ukázat, jak se projeví zdražení krmiva o pouhé dvě koruny při stejných parametrech jako 
+v experimentu 1. BR1 je nastaveno na 17 Kč, BR2 na 16 Kč a BR3 na 14 Kč. Máme opět 100~000 kuřat.
+\par
+Zisk je oproti experimentu 1 pouze 1~634~860 Kč.
+\subsubsection{Experiment č.7}
+A nyní se podívejme jak se sníží hranice udržitelnosti. Koupíme 34~000 kuřat.
+\par
+Lze vidět, že zisk je pouze 815 Kč. Lze zde nádherně vidět význam ceny krmiva, a to proto,
+že po zdražení krmiva o pouhé 2 koruny musí drůbežárna nakupovat o téměř
+10~000 kuřat více, aby bylo možno zaplatit všechny zaměstnance.
 
 \section{Shrnutí simulačních experimentů a závěr}\label{zaver}
 TODO
 
-V tabulce \ref{tabulka1} můžeme vidět, že při současné ekonomické situaci, kdy dělník/ce v drůbežárně a na jatkách
-má mzdu mezi jedenácti až čtrnácti tisící korun, technik mezi dvaceti až třiceti tisíci a vedoucí mezi třiceti
-a čtyřiceti tisíci korun a při ceně za kg vykuchaného kuřete 46 Kč/kg se hranice udržitelnosti pohybuje okolo 
-21 045 prodaných kuřat.
-
-\begin{center}
-\resizebox{\columnwidth}{!}{
- \label{tabulka1}
-
- \begin{tabular}{|c | c | c | c | c | c|}
-  \hline
-  Počet zaměstnanců 	& Průměrná mzda[Kč] 	& Počet nakoupených kuřat 	& Počet prodaných kuřat & Cena za kg kuřete[Kč]	& Výsledek[Kč]\\
-  \hline\hline
-  30 			& 20 000 		& 100 000 			& 97 575 		& 46	 		& 2 853 639\\
-  30 			& 20 000 		& 30 000  			& 29 293 		& 46	 		& 330 553\\
-  30 			& 20 000 		& 21 600  			& 21 045		& 46			& 821\\
-  30 			& 20 000 		& 21 000  			& 20 520		& 46			& -19 644\\
-  
-  
-  \hline
- \end{tabular}
- 
-}
-\captionof{table}{Tabulka zobrazující současnou ekonomickou situaci} 
-\end{center}
 
 
 \pagebreak
