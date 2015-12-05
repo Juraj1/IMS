@@ -68,7 +68,12 @@ vytvoření abstraktního modelu\cite{abstract_model}, který byl posléze přev
 simulující farmu pro výkrm broilerů Ross\textsuperscript{\textregistered}. 
 
 \subsection{Validace a verifikace}\label{validaceVerifikace}
-TODO model zvalidovan pomoci smernic EU
+Ceny jednotlivých komodit byly ověřeny u oficiálních zdrojů.
+Prodejní cena za kg kuřete byla ověřena pomocí Státního intervenčního
+zemědělského fondu\cite{szif}, cena vody byla ověřena u vodáren\cite{vodarny}.
+Mzdy zaměstnanců byly ověřeny inzeráty na HPP a cena krmiva byla ověřena
+u jednotlivých obchodníků. Růst drůbeže a průběh výkrmu byl porovnáván
+se zdroji od firmy Aviagen\cite{ross}.
 
 
 %
@@ -244,13 +249,23 @@ Zisk je oproti experimentu 1 pouze 1~634~860 Kč.
 \subsubsection{Experiment č.7}
 A nyní se podívejme jak se sníží hranice udržitelnosti. Koupíme 34~000 kuřat.
 \par
-Lze vidět, že zisk je pouze 815 Kč. Lze zde nádherně vidět význam ceny krmiva, a to proto,
+Výsledky experimentu ukázaly, že zisk je pouze 815 Kč. Lze zde nádherně vidět význam ceny krmiva, a to proto,
 že po zdražení krmiva o pouhé 2 koruny musí drůbežárna nakupovat o téměř
 10~000 kuřat více, aby bylo možno zaplatit všechny zaměstnance.
 
 \section{Shrnutí simulačních experimentů a závěr}\label{zaver}
-TODO
-
+V rámci projektu vznikl nástroj, který vychází z obecného modelu pro výkrm
+broilerů Ross\textsuperscript\textregistered\cite{ross} a byl implementován v C++.
+Tento nástroj by po drobných úpravách byl schopen
+simulovat různé situace pro specifické důbežárny a umožnil vedoucím podniků
+udržet se v černých číslech.
+\par
+Simulační experimenty ukázaly jak závisí
+pohyb hranice mezi čevenými a černými čísly na jednotlivých parametrech chovu.
+Za vskutku zajímavé autoři považují, že cena krmiva se na ziskovosti projeví 
+s takovou mírou a o tolik více než počet a mzda zaměstnanců. I když s tímto počítali,
+nečekali, že vliv ceny krmiva bude mít takový vliv na zisk a tím i výslednou cenu vykrmeného 
+broileru.
 
 
 \pagebreak
@@ -274,6 +289,8 @@ TODO
 
 \begin{thebibliography}{99}
 
+\bibitem{vodarny}
+\bibitem{szif}
 \bibitem{markovuv_proces}
 \bibitem{aviagen}
 \bibitem{ross}
@@ -283,6 +300,8 @@ TODO
 \bibitem{modelovani}
 \bibitem{petriho_sit}
 \bibitem{prechod}
+
+
 
 
 
