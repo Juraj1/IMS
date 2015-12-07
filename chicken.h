@@ -63,10 +63,9 @@ private:
 
     /*
      * water usage constant
-     * everything is in liters for 1000 chicks with temperature 21 degrees of Celsius
      * water usage is to certain age
-     * =>   chicks younger than 7 days uses 65 liters of water/day
-     *      chicks younger than 14 days uses 106 liters of water/day etc.
+     * =>   chicks younger than 7 days uses 0.065 liters of water/day
+     *      chicks younger than 14 days uses 0.112 liters of water/day etc.
      */
     const float WATER_DAY_7   = 0.065;   /* day 7 */
     const float WATER_DAY_14  = 0.112;  /* day 14 */
