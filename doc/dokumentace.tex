@@ -49,7 +49,7 @@
 %
 
 \section{Úvod}
-V tomto textu bude čtenář seznámen s vytvářením modelu pro diskrétní simulaci 
+V tomto textu bude čtenář seznámen s vytvářením modelu pro diskrétní simulaci\cite{diskretni_simulace}
 života broilerů a ekonomické udržitelnosti drůbežárny.
 \par 
 Je zde popsáno studium autorů, kde autoři získávají potřebné informace
@@ -132,13 +132,16 @@ z předmětu IPP\cite{ipp}.
 
 \section{Koncepce}\label{koncepce}
 Jelikož nás pouze zajímá ekonomická situace drůbežárny, můžeme z modelu vyloučit detaily
-o růstu kuřete. Pro vyhodnocení ekonomické situace nám stačí pouze množství snězeného krmiva,
+o růstu kuřete. Do modelu také nebyly zahrnuty ceny za energie, jelikož výše poplatků
+je vysoce individuální a záleží na každé drůbežárně, jak bude s energiemi hospodařit. Další důvod je 
+absence zdrojů, které by určily přesnou spotřebu.
+Pro vyhodnocení ekonomické situace nám stačí pouze množství snězeného krmiva,
 spotřebované vody, výsledná váha kuřete, počet zpracovaných kuřat, 
 kupní cena jednodenního broileru Ross\textsuperscript\textregistered
 a velkoobchodní cena vykrmeného broileru.
 \par
 Koncepční model\cite{concept_model} je vytvořen jako diskrétní model, kde časovou osu reprezentují dny věku kuřete.
-Kuře v modelu je reprezentováno jako jako Markovův proces\cite{markovuv_proces},
+Kuře v modelu je reprezentováno jako Markovův proces\cite{markovuv_proces},
 kdy každý den proces mění svůj stav na základě svého aktuálního věku.
 \par
 Život kuřete je modelován Petriho sítí, která zobrazena je na obrázku \ref{obr:petri_kure}.
@@ -161,7 +164,7 @@ označují volání metod odpovídajícího objektu v simulačním modelu.
 \end{figure}
 
 Na obrázku \ref{obr:drubezarna} můžeme vidět model drůbežárny samotné v podobě Petriho sítě. Můžeme vidět, že po přijeťí kuřat
-se model dostane do stavu, kde se rozhoduje, jestli se bude posouvat po časové ose anebo jestli zpracuje
+se model dostane do stavu, kde se rozhoduje, jestli se bude posouvat po časové ose, anebo jestli zpracuje
 kuřata. Proměnná A vyjadřuje počet tokenů(teček), které reprezentují množinu kuřat vynásobenou počtem dní výkrmu,
 nebo-li: 
 $A=\textit{počet kuřat }*\textit{ dny výkrmu}$.
@@ -184,7 +187,7 @@ třídy factory, a třídy chicken. Z třídy \textit{factory} se vytvoří obje
 se vytvoří jednotlivá kuřata, která se seřadí do vektoru \textit{chick}. S tímto vektorem poté pracuje továrna tak,
 že nad ním volá metodu \textit{nextDay()}(lze vidět na obrázku \ref{obr:drubezarna}), která zašle objektu kuřete
 zprávu o příchodu následujícího dne. Po přijetí této zprávy objekt kuře simuluje krmení, pití a tloustnutí.
-Poté objekt kuře zkontroluje booleovskou hodnotu signalizující, zda je nakaženo a má umřít anebo žije další den.
+Poté objekt kuře zkontroluje booleovskou hodnotu signalizující, zda je nakaženo a má umřít, anebo žije další den.
 Tato booleovská hodnota je nastavena na true v 0.05\% případů. Kontrola se provádí každý den a dohromady to dává ~2\% celkový úhyn.
 Pokud kuře uhyne, zvýší se čitač v objektu drůbežárny a s mrtvým objektem kuře se nadále nepracuje.
 Po ukončení výkrmu se zavolá metoda drůbežárny \textit{statistics()}, která vyhodnotí údaje o výkrmu a vytvoří finanční analýzu.
@@ -289,6 +292,7 @@ broileru.
 
 \begin{thebibliography}{99}
 
+\bibitem{diskretni_simulace}
 \bibitem{vodarny}
 \bibitem{szif}
 \bibitem{markovuv_proces}
@@ -300,6 +304,7 @@ broileru.
 \bibitem{modelovani}
 \bibitem{petriho_sit}
 \bibitem{prechod}
+
 
 
 
